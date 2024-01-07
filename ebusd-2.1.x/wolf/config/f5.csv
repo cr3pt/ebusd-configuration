@@ -1,0 +1,12 @@
+# type (r:w:u:1-9),class,name,comment,QQ,ZZ,PBSB,ID,field1,part (m:s),type / templates,divider / values,unit,comment [1],field2,part (m:s) [1],type / templates [1],divider / values [1],unit [1],comment [2],field3,part (m:s) [2],type / templates [2],divider / values [2],unit [2],comment [3],field4,part (m:s) [3],type / templates [3],divider / values [3],unit [3],comment [4],field5,part (m:s) [4],type / templates [4],divider / values [4],unit [4],comment [5],field6,part (m:s) [5],type / templates [5],divider / values [5],unit [5],comment [6],field7,part (m:s) [6],type / templates [6],divider / values [6],unit [6],comment [7]
+r,MM2,temp_f5_1,,,f5,5022,900f00,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,TT2,,,f5,5022,700500,,,SIN,10,°C,Mischerkreis_2_Tagtemperatur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,ST2,,,f5,5022,580800,,,SIN,10,°C,Mischerkreis_2_Spartemperatur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_4,,,f5,5022,9d1401,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_5,,,f5,5022,cd0e01,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_6,,,f5,5022,4e8b02,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_7,,,f5,5022,251601,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_8,,,f5,5022,791701,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,temp_f5_9,,,f5,5022,775b03,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,RT2,,,f5,5022,ec1100,,,SIN,10,°C,Mischerkreis_2_Raumtemperatur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,MM2,RTS2,,,f5,5022,081200,,,SIN,10,°C,Mischerkreis_2_Raumsolltemperatur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

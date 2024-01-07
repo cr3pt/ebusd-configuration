@@ -1,0 +1,125 @@
+# type (r;w;u;1-9),class,name,comment,QQ,ZZ,PBSB,ID,field1,part (m;s),type / templates,divider / values,unit,comment,field2,part (m;s),type / templates,divider / values,unit,comment,field3,part (m;s),type / templates,divider / values,unit,comment,field4,part (m;s),type / templates,divider / values,unit,comment,field5,part (m;s),type / templates,divider / values,unit,comment,field6,part (m;s),type / templates,divider / values,unit,comment,field7,part (m;s),type / templates,divider / values,unit,comment
+*b,,,,,"FE","0903",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+*n,,,,,"F1",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+n,,Set,Sollwerte HC1->SC ,"30",,"0507",,Status,,_8_Opdataheat,,, ,Action,,_8_Opdataaction,,, ,SetTemp,,_16_Temp2,,, ,SetPressure,,_16_Pressure,,, ,OutputDegree,,_8_Percent,,, ,DHWSetTemp,,_8_Temp2,,, ,Fueltype,,_8_Fueltype,,,
+b,,BCAST1, ,"30",,,"7600",,,UIN,,,
+b,,BCAST2, ,"30",,,"7800",,,UIN,,,
+
+!include,hc.processvalues.inc,,Prozesswerte Heizkreisregler,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hc.user.inc,,Parameter Endanwender - Heizkreis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hc.userholiday.inc,,Parameter Endanwender - Urlaub,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hc.expert.inc,,Parameter Heizungsfachmann - Heizkreis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hc.timer.inc,,Zeitprogramme Heizkreis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hwc.processvalues.inc,,Prozesswerte Heizkreisregler - Warmwasser,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hwc.user.inc,,Parameter Endanwender - Warmwasser,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hwc.expert.inc,,Parameter Heizungsfachmann - Warmwasser,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hwc.timer.inc,,Zeitprogramm Warmwasser,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+!include,hwc.timercc.inc,,Zeitprogramm Zirkulationspumpe,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+# type (r;w;u;1-9),class,name,comment,QQ,ZZ,PBSB,ID,field1,part (m;s),type / templates,divider / values,unit,comment,field2,part (m;s),type / templates,divider / values,unit,comment,field3,part (m;s),type / templates,divider / values,unit,comment,field4,part (m;s),type / templates,divider / values,unit,comment,field5,part (m;s),type / templates,divider / values,unit,comment,field6,part (m;s),type / templates,divider / values,unit,comment,field7,part (m;s),type / templates,divider / values,unit,comment,field8,part (m;s),type / templates,divider / values,unit,comment
+
+*w,Feuerung,,,,03,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r;w,betrd_bm2,bm2,Betriebsdaten des Reglers (hier BM2) an den Feuerungsautomaten,,03,0507,,bm2_status,,UCH,0x00=aus;0x01=keine;0x55=Brauchwasser;0xAA=Heizen;0xCC=Emisionskontrolle;0xDD=TÜV;0xEE=Reglerstop;0x66=Brauchwasser_Reglerstop;0xBB=Brauchwasser_Heizen;0x44=Reglerstop_stufig,,Statuswärmeanforderung,aktion,,UCH,0x00=keine;0x01=Kesselpumpeaus;0x02=Kesselpumpean;0x03=Verbraucheraus;0x04=Verbraucheran,,variable Verbraucher,kesselsolltemp,,temp,,,Kesselsolltemperatur,solldruck,,press,,,Kesselsollwertdruck ,stellgrad,,percent1,,,Stellgradanforderung,brauchwassersolltemp,,temp1,,,Brauchwassersolltemperatur,brennstoff,,UCH,0x00=dc;0x01=Gas;0x02=Öl;0x03=dc,,Brennstoffwahl,,,,,,
+
+
+*r,betrd_bm2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+#################################
+# 3550220377b427 Raumtemperatur #
+#################################
+
+r,betrd_bm2,raumtemp,Raumtemperatur (35->50),,35,5022,77b427,,,UIN,10,°C,,,,,,,,
+
+#################################
+# 35502203fb7d27 Tagtemperatur #
+#################################
+
+r,betrd_bm2,tagtemp,Tagestemperatur (35->50),,35,5022,fb7d27,,,UIN,10,°C,,,,,,,,
+
+#####################################
+# 3008502203cc0d00 Kesseltemperatur #
+#####################################
+
+r,,temp_burner,Kesseltemperatur (30->08),,08,5022,CC0D00,,,UIN,10,°C,,,,,,,,,,
+
+#######################################
+# 3008502203cc1600 Rücklauftemperatur #
+#######################################
+
+r,,temp_return,Rücklauftemperatur (30->08),,08,5022,CC1600,,,UIN,10,°C,,,,,,,,
+
+
+#####################################
+# 3008502203cc1d27 Abgastemperatur  #
+#####################################
+
+r,,temp_exhaust,Abgastemperatur (30->08),,08,5022,CC1D27,,,UIN,10,°C,,,,,,,,,,
+
+########################################
+# 3008502203cc6f01 Leistung in Prozent #
+########################################
+
+r,,performance_burner,GeraeteLeistung (30->08),,08,5022,CC6F01,,,UCH,,%,,,,,,,,,,
+
+##############################################
+# 3008502203cc5727 Drehzahl Pumpe in Prozent #
+##############################################
+
+r,,performance_pump,Drehzahl Pumpe (30->08),,08,5022,CC5727,,,UCH,,%,,,,,,,,,,
+
+#################################
+# 3008502203cc1a27 Anlagendruck #
+#################################
+
+r,,pressure,Anlagendruck (30->08),,08,5022,CC1A27,,,UCH,100,bar,,,,,,,,,,
+r,,pressure,Anlagendruck (30->08),,08,5022,CC1A27,,,UIN,100,bar,,,,,,,,,,
+
+
+#############################################
+# 3008502203cc9a01 Software Version Brenner #
+############################################
+
+r,,fw_version_burner,Brenner Software (30->08),,08,5022,CC9A01,,,UCH,100,,,,,,,,,,,
+
+#####################################
+# 3008502203cc2602 Anzahl Zündungen #
+#####################################
+
+r,,no_of_firing,Anzahl Zündungen (30->08),,08,5022,CC2602,,,UIN,,,,,,,,,,,,
+
+###############################
+# 3008502203cc4f27 Ionisation #
+###############################
+
+r,,ionisation,Ionisation (30->08),,08,5022,CC4F27,,,UCH,,,,,,,,,,,,
+
+####################################
+# 3008502203cc5e27 Anzahl Netz-Ein #
+####################################
+
+r,,no_of_power_on,Anzahl Netz-Ein (30->08),,08,5022,CC5E27,,,UIN,,,,,,,,,,,,
+
+############################################
+# 3008502203cc2a02 Betriebsstunden Brenner #
+############################################
+
+r,,op_hrs_heating,Betriebsstunden Brenner (30->08),,08,5022,CC2A02,,,UIN,,,,,,,,,,,,
+
+############################################
+# 3008502203cc2802 Betriebsstunden am Netz #
+############################################
+
+r,,op_hrs_supply,Betriebsstunden am Netz (30->08),,08,5022,CC2802,,,UIN,,,,,,,,,,,,
+
+
+############################################
+# 3008502203cc5427 Heizung Status?         #
+############################################
+
+r,,uflags4,Heizung Status? uflags4,,08,5022,CC5427,,,UIN,,,,,,,,,,,,
+
+############################################
+# 3008502203cc5327 Heizung Status?         #
+############################################
+
+r,,uflags5,Heizung Status? uflags5,,08,5022,CC5327,,,UIN,,,,,,,,,,,,
+
